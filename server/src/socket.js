@@ -7,6 +7,11 @@ export default class SocketServer {
         this.port = port
     }
 
+    async sendMessage(socket, event, message) {
+        const data = JSON.stringify({event, message})
+        socket.write(`${data}\n`)
+    }
+
     async initialize(eventEmmiter) {
         const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'text/plain' })
@@ -17,7 +22,7 @@ export default class SocketServer {
             socket.id = uuid()
             const headers = [
                 'HTTP/1.1 101 Web Socket Protocol Handshake',
-                'Upgrade: Websocket',
+                'Upgrade: WebSocket',
                 'Connection: Upgrade',
                 ''
             ].map(line => line.concat('\r\n')).join('')
