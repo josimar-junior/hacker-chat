@@ -5,8 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node src/",
     "dev": "npx nodemon src/",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "14"
   },
   "keywords": [],
   "author": "",
